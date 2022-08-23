@@ -14,6 +14,10 @@ public interface UserService {
 	User createUser(User user, Set<UserRole> userRoles) throws Exception;
 	public String userLogin(String email,String password);
 	
-	
+	User updateUserById(Long id, User userDetails);
+
 	public Set<User> getAllUsers();
+	
+	public User getUserById(Long id);
+
 }

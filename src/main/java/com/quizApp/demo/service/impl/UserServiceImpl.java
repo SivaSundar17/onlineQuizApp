@@ -75,6 +75,25 @@ public class UserServiceImpl implements UserService {
 		return userRepository.fetchAllUsers();
 	}
 
+	@Override
+	public User getUserById(Long id) {
+		// TODO Auto-generated method stu
+        return this.userRepository.findById(id).get();
+	}
+
+	@Override
+	public User updateUserById(Long id, User userDetails) {
+		// TODO Auto-generated method stub
+		User Getuser=new User();
+		Getuser=userRepository.findById(id).get();
+		Getuser.setUsername(userDetails.getUsername());
+		Getuser.setEmail(userDetails.getEmail());
+		Getuser.setMobileNo(userDetails.getMobileNo());
+		Getuser.setPassword(userDetails.getPassword());
+		
+		return userRepository.save(Getuser);
+	}
+
 
 
 }

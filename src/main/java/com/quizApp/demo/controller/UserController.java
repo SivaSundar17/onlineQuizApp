@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,30 +60,18 @@ public class UserController {
     	return this.userService.getAllUsers();
     }
     
+    @GetMapping("getUser/{id}")
+    public User getProfileById(@PathVariable("id") Long id) {
+        return this.userService.getUserById(id);
+    }    
+    
+    @PutMapping("/{id}")
+    public User UpdateUser(@PathVariable Long id,@RequestBody User userDetails)
+    {
+
+        return userService.updateUserById(id,userDetails);
+    }
     
 
-//    @GetMapping("/getStudentId")
-//    public String getStudentId(@RequestParam String userEmail) {
-//        Query queryGetStudentIdOfAUser = entityManager.createNativeQuery("select student_id "
-//                + "from students as s "
-//                + "where s.student_email = :userEmail");
-//
-//        queryGetStudentIdOfAUser = queryGetStudentIdOfAUser.setParameter("userEmail", userEmail);
-//
-//        List result = queryGetStudentIdOfAUser.getResultList();
-//
-//        System.out.println("------------------------------------------");
-//        System.out.println(result);
-//        System.out.println("------------------------------------------");
-//
-//        entityManager.clear();
-//        entityManager.close();
-//
-//        if (result.size() > 0) {
-//            return result.get(0).toString();
-//        }
-//
-//        return "null";
-//    }
 
 }

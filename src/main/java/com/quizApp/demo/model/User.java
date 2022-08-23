@@ -28,11 +28,25 @@ public class User{
     private String mobileNo;
     private boolean enabled=true;
     
+    
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
     @JsonIgnore
     private Set<UserRole> userRoles=new HashSet<>(); 
+    
+    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+    @JsonIgnore
+    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
+    
    
-    public User() {
+    public Set<QuizPaymentStatus> getQuizPaymentStatus() {
+		return quizPaymentStatus;
+	}
+
+	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
+		this.quizPaymentStatus = quizPaymentStatus;
+	}
+
+	public User() {
     
     }
 
