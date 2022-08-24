@@ -3,6 +3,7 @@ package com.quizApp.demo.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quizApp.demo.model.Question;
 import com.quizApp.demo.model.QuizPaymentStatus;
 import com.quizApp.demo.repo.QuestionRepository;
 import com.quizApp.demo.repo.QuizPaymentStatusRepository;
@@ -24,7 +25,7 @@ public class QuizPaymentStatusServiceImpl implements QuizPaymentStatusService {
 	@Override
 	public QuizPaymentStatus getQuizPaymentStatus(Long userId, long qid) {
 		// TODO Auto-generated method stub
-		return quizPaymentStatusRepository.findByUser_idAndQuiz_id(userId, qid);
+		return quizPaymentStatusRepository.findByUserIdAndQuizId(userId, qid);
 	}
 
 	@Override
@@ -34,11 +35,23 @@ public class QuizPaymentStatusServiceImpl implements QuizPaymentStatusService {
 		qps=this.quizPaymentStatusRepository.findById(id).get();
 		qps.setId(id);
 		qps.setPaymentStatus(quizPaymentStatus.isPaymentStatus());
-		qps.setQuiz(qps.getQuiz());
-		qps.setUser(qps.getUser());
+//		qps.setQuiz(qps.getQuiz());
+//		qps.setUser(qps.getUser());
+		qps.setQuesId(qps.getQuizId());
+		qps.setUserId(qps.getUserId());
         return this.quizPaymentStatusRepository.save(qps);
 
 	}
+
+	@Override
+	public void delePaymentStatus(long id) {
+		QuizPaymentStatus qps=new QuizPaymentStatus();
+	        qps.setId(id);	
+		this.quizPaymentStatusRepository.delete(qps);
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 	
 

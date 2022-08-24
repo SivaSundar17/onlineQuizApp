@@ -2,6 +2,7 @@ package com.quizApp.demo.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -118,9 +119,11 @@ public class DatabaseFileController {
 		//fileuc.uploadFile(file,desc);
 	}
 	@GetMapping("/files/{qid}")
-    public List<DatabaseFile> getAllFilesByQuizId( ){
+    public Set<DatabaseFile> getAllFilesByQuizId(@PathVariable("qid") Long qId ){
+        Quiz quiz = new Quiz();
+        quiz.setId(qId);
         // Load file as Resource
-    	return fileStorageService.getFiles();
+    	return fileStorageService.getFilesOfQuiz(quiz);
     }
 	
 	

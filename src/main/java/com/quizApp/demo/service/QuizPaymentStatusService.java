@@ -10,5 +10,5 @@ public interface QuizPaymentStatusService {
     public QuizPaymentStatus getQuizPaymentStatus(Long userId, long qid);
     
     public QuizPaymentStatus updateQuizPaymentStatus(Long id,QuizPaymentStatus quizPaymentStatus);
-
+    public void delePaymentStatus(long id);
 }

@@ -8,6 +8,5 @@ public interface QuizService {
 	public Set<Quiz> getQuizzes();
 	public Quiz updateQuiz(Long id,Quiz quiz);
     public void deleteQuiz(Long id);
-//
     public Quiz getQuiz(Long quizId);
 }

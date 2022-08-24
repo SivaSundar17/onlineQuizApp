@@ -1,5 +1,6 @@
 package com.quizApp.demo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -14,13 +15,33 @@ public class QuizPaymentStatus {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-    @ManyToOne(fetch = FetchType.EAGER)
-    private User user;
+	private long quizId;
+	private long userId;
+	
+	
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private User user;
+//    
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    private Quiz quiz;
     
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Quiz quiz;
     
-    
+	public long getQuizId() {
+		return quizId;
+	}
+
+	public void setQuesId(long quesId) {
+		this.quizId = quizId;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
+	}
+
 	private boolean paymentStatus;
 
 
@@ -32,21 +53,21 @@ public class QuizPaymentStatus {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
+//	public User getUser() {
+//		return user;
+//	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
+//
+//	public Quiz getQuiz() {
+//		return quiz;
+//	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public Quiz getQuiz() {
-		return quiz;
-	}
-
-	public void setQuiz(Quiz quiz) {
-		this.quiz = quiz;
-	}
+//	public void setQuiz(Quiz quiz) {
+//		this.quiz = quiz;
+//	}
 
 	public boolean isPaymentStatus() {
 		return paymentStatus;
@@ -55,6 +76,7 @@ public class QuizPaymentStatus {
 	public void setPaymentStatus(boolean paymentStatus) {
 		this.paymentStatus = paymentStatus;
 	}
+	
 	
     
 }

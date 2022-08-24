@@ -34,13 +34,15 @@ public class Quiz {
 	
 	
 	
+	
+	
 	   @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    @JsonIgnore
 	    private Set<Question> questions = new HashSet<>();
-	   
-	   @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	    @JsonIgnore
-	    private Set<QuizPaymentStatus> quizPaymentStatus = new HashSet<>();
+//	   
+//	   @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//	    @JsonIgnore
+//	    private Set<QuizPaymentStatus> quizPaymentStatus = new HashSet<>();
 	   
 	   @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    @JsonIgnore
@@ -85,11 +87,11 @@ public class Quiz {
 		this.maxMarks = maxMarks;
 	}
 	public String getNoOfQuestions() {
-		return noOfQuestions;
+		return String.valueOf(this.questions.size());
 	}
-	public void setNoOfQuestions(String noOfQuestions) {
-		this.noOfQuestions = noOfQuestions;
-	}
+//	public void setNoOfQuestions(String noOfQuestions) {
+//		this.noOfQuestions = noOfQuestions;
+//	}
 	public int getPrice() {
 		return price;
 	}

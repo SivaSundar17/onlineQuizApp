@@ -10,5 +10,6 @@ import com.quizApp.demo.model.Quiz;
 
 @Repository
 public interface QuestionRepository extends JpaRepository<Question,Long> {
+	
 	Set<Question> findByQuiz(Quiz quiz);
 }

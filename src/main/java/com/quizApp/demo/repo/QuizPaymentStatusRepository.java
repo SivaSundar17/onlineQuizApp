@@ -10,6 +10,6 @@ import com.quizApp.demo.model.User;
 @Repository
 public interface QuizPaymentStatusRepository extends JpaRepository<QuizPaymentStatus,Long> {
 	
-    public QuizPaymentStatus findByUser_idAndQuiz_id(long user_id,long quiz_id );
+    public QuizPaymentStatus findByUserIdAndQuizId(long user_id,long quiz_id );
 
 }

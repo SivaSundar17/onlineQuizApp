@@ -33,18 +33,18 @@ public class User{
     @JsonIgnore
     private Set<UserRole> userRoles=new HashSet<>(); 
     
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
-    @JsonIgnore
-    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
-    
-   
-    public Set<QuizPaymentStatus> getQuizPaymentStatus() {
-		return quizPaymentStatus;
-	}
-
-	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
-		this.quizPaymentStatus = quizPaymentStatus;
-	}
+//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
+//    @JsonIgnore
+//    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
+//    
+//   
+//    public Set<QuizPaymentStatus> getQuizPaymentStatus() {
+//		return quizPaymentStatus;
+//	}
+//
+//	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
+//		this.quizPaymentStatus = quizPaymentStatus;
+//	}
 
 	public User() {
     

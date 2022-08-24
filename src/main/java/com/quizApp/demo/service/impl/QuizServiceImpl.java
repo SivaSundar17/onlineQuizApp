@@ -28,25 +28,18 @@ public class QuizServiceImpl implements QuizService {
 			Getuser.setTitle(quiz.getTitle());
 			Getuser.setDescription(quiz.getDescription());
 			Getuser.setMaxMarks(quiz.getMaxMarks());
-			Getuser.setNoOfQuestions(quiz.getNoOfQuestions());
+			//Getuser.setNoOfQuestions(quiz.getNoOfQuestions());
 			Getuser.setPrice(quiz.getPrice());
 			
 	        return this.quizRepository.save(Getuser);
 	    }
+	 
 	 @Override
 	    public void deleteQuiz(Long id) {
 	        this.quizRepository.deleteById(id);
 	    }
-	 
-	 
-	
-//	@Override
-//	 public Set<Quiz> getQuizzes() {
-//		 System.out.println("you are here");
-//	        return new HashSet<>(this.quizRepository.findAll());
-//	    }
-
-	    
+	 	
+	 @Override
 	    public Quiz getQuiz(Long id) {
 	        return this.quizRepository.findById(id).get();
 	    }
