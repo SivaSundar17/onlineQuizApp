@@ -2,6 +2,7 @@ package com.quizApp.demo.service.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.quizApp.demo.exception.FileNotFoundException;
 import com.quizApp.demo.exception.FileStorageException;
 import com.quizApp.demo.model.DatabaseFile;
+import com.quizApp.demo.model.Quiz;
 import com.quizApp.demo.repo.DatabaseFileRepository;
 import com.quizApp.demo.service.DatabaseFileService;
 
@@ -21,7 +23,7 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
     private DatabaseFileRepository dbFileRepository;
 	
 	@Override
-    public DatabaseFile storeFile(MultipartFile file,String desc) {
+	public DatabaseFile storeFile(MultipartFile file, String desc, Quiz quiz) {
         // Normalize file name
         String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 
@@ -31,7 +33,7 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
                 throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
             }
 
-            DatabaseFile dbFile = new DatabaseFile(fileName, file.getContentType(), file.getBytes(),desc);
+            DatabaseFile dbFile = new DatabaseFile(fileName, file.getContentType(), file.getBytes(),desc,quiz);
 
             return dbFileRepository.save(dbFile);
         } catch (IOException ex) {
@@ -79,4 +81,12 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
             throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
         }
     }
+
+	@Override
+	public Set<DatabaseFile> getFilesOfQuiz(Quiz quiz) {
+		// TODO Auto-generated method stub
+	return this.dbFileRepository.findByQuiz(quiz);
+	}
+
+
 }

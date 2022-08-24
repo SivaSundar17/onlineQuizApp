@@ -39,10 +39,10 @@ public class QuestionController {
         return ResponseEntity.ok(this.service.addQuestion(question));
     }
 
-    //update the question
-    @PutMapping("/")
-    public ResponseEntity<Question> update(@RequestBody Question question) {
-        return ResponseEntity.ok(this.service.updateQuestion(question));
+  //update the question
+    @PutMapping("/update/{quesId}")
+    public ResponseEntity<Question> update(@PathVariable long quesId , @RequestBody Question question) {
+        return ResponseEntity.ok(this.service.updateQuestion(quesId,question));
     }
 
     //get all question of any quid
@@ -79,7 +79,7 @@ public class QuestionController {
     }
 
 
-    //get single question
+    //get question by questionId
     @GetMapping("/{quesId}")
     public Question get(@PathVariable("quesId") Long quesId) {
         return this.service.getQuestion(quesId);

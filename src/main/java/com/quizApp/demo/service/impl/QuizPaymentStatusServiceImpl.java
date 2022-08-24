@@ -16,6 +16,7 @@ public class QuizPaymentStatusServiceImpl implements QuizPaymentStatusService {
 
 	@Override
 	public QuizPaymentStatus addPaymentStatus(QuizPaymentStatus quizPaymentStatus) {
+		
 		// TODO Auto-generated method stub
 		return quizPaymentStatusRepository.save(quizPaymentStatus) ;
 	}
