@@ -36,6 +36,11 @@ public class User{
 //    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
 //    @JsonIgnore
 //    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
+    
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @JsonIgnore
+    private Set<Revenue> revenue=new HashSet<>(); 
+    
 //    
 //   
 //    public Set<QuizPaymentStatus> getQuizPaymentStatus() {
@@ -45,6 +50,14 @@ public class User{
 //	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
 //		this.quizPaymentStatus = quizPaymentStatus;
 //	}
+
+	public Set<Revenue> getRevenue() {
+		return revenue;
+	}
+
+	public void setRevenue(Set<Revenue> revenue) {
+		this.revenue = revenue;
+	}
 
 	public User() {
     

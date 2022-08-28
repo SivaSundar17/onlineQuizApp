@@ -1,5 +1,6 @@
 package com.quizApp.demo.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 
@@ -19,5 +20,10 @@ public interface DatabaseFileService {
 	public List<DatabaseFile> getFiles();
 	
     public Set<DatabaseFile> getFilesOfQuiz(Quiz quiz);
-
+    
+    public void deleteFiles(Integer fileId);
+	
+	public void updateFiles(int fileId, MultipartFile file, String desc) throws IOException;
+	
+	public void updateDescription(int fileId, String desc);
 }

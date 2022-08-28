@@ -48,6 +48,18 @@ public class Quiz {
 	    @JsonIgnore
 	    private Set<DatabaseFile> dataBaseFile = new HashSet<>();
 	   
+	   @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+	    @JsonIgnore
+	    private Set<Revenue> revenue = new HashSet<>();
+	   
+	public Set<Revenue> getRevenue() {
+		return revenue;
+	}
+
+	public void setRevenue(Set<Revenue> revenue) {
+		this.revenue = revenue;
+	}
+
 	public Set<DatabaseFile> getDataBaseFile() {
 		return dataBaseFile;
 	}

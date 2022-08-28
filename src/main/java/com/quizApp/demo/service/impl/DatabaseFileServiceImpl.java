@@ -58,35 +58,40 @@ public class DatabaseFileServiceImpl implements DatabaseFileService {
 		return this.dbFileRepository.save(databaseFile);
 	}
 	
-	public String updateFile(MultipartFile file) {
-        // Normalize file name
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-        try {
-            // Check if the file's name contains invalid characters
-            if(fileName.contains("..")) {
-                throw new FileStorageException("Sorry! Filename contains invalid path sequence " + fileName);
-            }
-            
-            if(dbFileRepository.existsByfileName(fileName)) {
-            	DatabaseFile dbFile_org = dbFileRepository.getByfileName(fileName);
-            	dbFile_org.setFileName(fileName);
-            	dbFile_org.setFileType(file.getContentType());
-            	dbFile_org.setData(file.getBytes());
-            	dbFileRepository.saveAndFlush(dbFile_org);
-            	return "file updated";
-            }
-            return "file not updated";
-        } catch (IOException ex) {
-            throw new FileStorageException("Could not store file " + fileName + ". Please try again!", ex);
-        }
-    }
+	
 
 	@Override
 	public Set<DatabaseFile> getFilesOfQuiz(Quiz quiz) {
 		// TODO Auto-generated method stub
 	return this.dbFileRepository.findByQuiz(quiz);
 	}
-
+	
+	@Override
+	public void deleteFiles(Integer fileId) {
+		DatabaseFile dbFile=this.dbFileRepository.findById(fileId).get();
+		this.dbFileRepository.delete(dbFile);
+	}
+	
+	@Override
+	public void updateFiles(int fileId, MultipartFile file, String desc) throws IOException {
+		DatabaseFile dbFile = this.dbFileRepository.findById(fileId).get();
+		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+		byte [] byteArr=file.getBytes();
+		dbFile.setData(byteArr);
+		dbFile.setFileName(fileName);
+		dbFile.setId(fileId);
+		dbFile.setDescription(desc);
+		dbFile.setFileType(file.getContentType());
+		dbFileRepository.save(dbFile);
+		
+	}
+	
+	@Override
+	public void updateDescription(int fileId, String desc) {
+		DatabaseFile dbFile = this.dbFileRepository.findById(fileId).get();
+		dbFile.setId(fileId);
+		dbFile.setDescription(desc);
+		dbFileRepository.save(dbFile);
+	}
 
 }

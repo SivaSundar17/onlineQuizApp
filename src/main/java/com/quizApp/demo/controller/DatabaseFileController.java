@@ -37,11 +37,7 @@ public class DatabaseFileController {
 	@Autowired
     private DatabaseFileServiceImpl fileStorageService;
 	
-	@Autowired
-    private DatabaseFileRepository fileStorageRepository;
-    
-
-    @PostMapping("/uploadFile")
+	@PostMapping("/uploadFile")
     public Response uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("desc") String desc, @RequestParam("qid") long qid) {
     	
     	Quiz quiz=new Quiz();
@@ -73,56 +69,28 @@ public class DatabaseFileController {
         // Load file as Resource
     	return fileStorageService.getFiles();
     }
-//    
-//    //delete file
+
+    
+    //delete file
     @DeleteMapping("/delete/{fileId}")
-	public void deleteFile(@PathVariable int fileId) {
-//	DatabaseFile dbFile = this.fileStorageRepository.findById(fileId);
-		DatabaseFile dbFile=this.fileStorageRepository.findById(fileId).get();
-		this.fileStorageRepository.delete(dbFile);
+    public void deleteFile(@PathVariable int fileId) {
+		fileStorageService.deleteFiles(fileId);
 	}
-//	
-//    //update file
+	
+    //update file
 	@PutMapping("/update/{fileId}")
 	public void updateFile(@PathVariable int fileId,@RequestParam("file") MultipartFile file,@RequestParam("desc") String desc) throws IOException {
-		DatabaseFile dbFile = this.fileStorageRepository.findById(fileId).get();
-		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		byte [] byteArr=file.getBytes();
-		dbFile.setData(byteArr);
-		dbFile.setFileName(fileName);
-		dbFile.setId(fileId);
-		dbFile.setDescription(desc);
-		dbFile.setFileType(file.getContentType());
-		 //DatabaseFile dbFileNew = new DatabaseFile(,fileName, file.getContentType(), file.getBytes(),desc,file);
-
-         //return dbFileRepository.save(dbFile);
-		//fileStorageRepository.delete(dbFile);
-		fileStorageRepository.save(dbFile);
-		//fileuc.uploadFile(file,desc);
+		fileStorageService.updateFiles(fileId,file,desc);
 	}
 	
 	@PutMapping("/updateDesc/{fileId}")
 	public void updateFileDesc(@PathVariable int fileId,@RequestParam("desc") String desc) throws IOException {
-		DatabaseFile dbFile = this.fileStorageRepository.findById(fileId).get();
-		//String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		//byte [] byteArr=file.getBytes();
-		//dbFile.setData(byteArr);
-		//dbFile.setFileName(fileName);
-		dbFile.setId(fileId);
-		dbFile.setDescription(desc);
-		//dbFile.setFileType(file.getContentType());
-		 //DatabaseFile dbFileNew = new DatabaseFile(,fileName, file.getContentType(), file.getBytes(),desc,file);
-
-         //return dbFileRepository.save(dbFile);
-		//fileStorageRepository.delete(dbFile);
-		fileStorageRepository.save(dbFile);
-		//fileuc.uploadFile(file,desc);
+		fileStorageService.updateDescription(fileId,desc);
 	}
 	@GetMapping("/files/{qid}")
     public Set<DatabaseFile> getAllFilesByQuizId(@PathVariable("qid") Long qId ){
         Quiz quiz = new Quiz();
         quiz.setId(qId);
-        // Load file as Resource
     	return fileStorageService.getFilesOfQuiz(quiz);
     }
 	
