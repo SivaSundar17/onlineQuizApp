@@ -26,7 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.quizApp.demo.model.DatabaseFile;
 import com.quizApp.demo.model.Quiz;
-import com.quizApp.demo.payload.Response;
+//import com.quizApp.demo.payload.Response;
 import com.quizApp.demo.repo.DatabaseFileRepository;
 import com.quizApp.demo.service.impl.DatabaseFileServiceImpl;
 
@@ -38,18 +38,12 @@ public class DatabaseFileController {
     private DatabaseFileServiceImpl fileStorageService;
 	
 	@PostMapping("/uploadFile")
-    public Response uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("desc") String desc, @RequestParam("qid") long qid) {
+    public DatabaseFile uploadFile(@RequestParam("file") MultipartFile file,@RequestParam("desc") String desc, @RequestParam("qid") long qid) {
     	
     	Quiz quiz=new Quiz();
     	quiz.setId(qid);
     	DatabaseFile fileName = fileStorageService.storeFile(file,desc,quiz);
-
-        String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/downloadFile/")
-                .path(fileName.getFileName())
-                .toUriString();
-        return new Response(fileName.getFileName(), fileDownloadUri,
-                file.getContentType(), file.getSize());
+        return fileName;
     }
     
     //download file

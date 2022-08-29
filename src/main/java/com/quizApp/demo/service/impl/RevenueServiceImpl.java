@@ -31,17 +31,7 @@ public class RevenueServiceImpl implements RevenueService {
 	@Override
 	public Revenue updateQuiz(Long id, Revenue revenue) {
 		// TODO Auto-generated method stub
-//		
-//	    Quiz Getuser=new Quiz();
-//		Getuser=quizRepository.findById(id).get();
-//		Getuser.setTitle(quiz.getTitle());
-//		Getuser.setDescription(quiz.getDescription());
-//		Getuser.setMaxMarks(quiz.getMaxMarks());
-//		//Getuser.setNoOfQuestions(quiz.getNoOfQuestions());
-//		Getuser.setPrice(quiz.getPrice());
-//		
-//        return this.quizRepository.save(Getuser);
-    //}
+
 		Revenue rev=new Revenue();
 		rev=this.revenueRepository.findById(id).get();
 		rev.setId(id);
