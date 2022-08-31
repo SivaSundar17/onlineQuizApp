@@ -19,5 +19,7 @@ public interface UserService {
 	public Set<User> getAllUsers();
 	
 	public User getUserById(Long id);
+	
+	public void deleteUser(long id);
 
 }

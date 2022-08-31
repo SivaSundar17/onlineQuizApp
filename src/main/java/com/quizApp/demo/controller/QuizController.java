@@ -22,17 +22,12 @@ import com.quizApp.demo.service.QuizService;
 @RequestMapping("/quiz")
 public class QuizController {
 	@Autowired
-	private QuizRepository TestRepo;
-	
-	@Autowired
 	private QuizService quizService;
 	
 	@PostMapping("/addQuiz")
-	public ResponseEntity<String> addTest(@RequestBody Quiz test){
-		TestRepo.save(test);
-		return new ResponseEntity<>("Test added Successfully", HttpStatus.OK);
-		
-	}
+	public ResponseEntity<Quiz> add(@RequestBody Quiz quiz) {
+        return ResponseEntity.ok(this.quizService.addQuiz(quiz));
+    }
 	
 	@GetMapping("/getQuiz")
     public ResponseEntity<?> quizzes() {

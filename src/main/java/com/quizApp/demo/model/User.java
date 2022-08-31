@@ -36,6 +36,9 @@ public class User{
 //    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
 //    @JsonIgnore
 //    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<TestHistory> testhistorys = new HashSet<>();
     
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
     @JsonIgnore

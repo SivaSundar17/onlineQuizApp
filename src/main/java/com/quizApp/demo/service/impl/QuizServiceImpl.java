@@ -43,5 +43,9 @@ public class QuizServiceImpl implements QuizService {
 	    public Quiz getQuiz(Long id) {
 	        return this.quizRepository.findById(id).get();
 	    }
+	@Override
+	public Quiz addQuiz(Quiz quiz) {
+        return this.quizRepository.save(quiz);
+    }
 
 }

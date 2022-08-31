@@ -52,6 +52,9 @@ public class Quiz {
 	    @JsonIgnore
 	    private Set<Revenue> revenue = new HashSet<>();
 	   
+	   @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+	    @JsonIgnore
+	    private Set<TestHistory> testhistory = new HashSet<>();
 	public Set<Revenue> getRevenue() {
 		return revenue;
 	}
