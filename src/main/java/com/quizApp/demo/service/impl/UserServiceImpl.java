@@ -58,8 +58,11 @@ public class UserServiceImpl implements UserService {
 		User data;
 		String roleName = null;
 		data=this.userRepository.findByEmail(email);
-		Set<UserRole> ur=data.getUserRoles();
+		if(data==null) {
+			return null;
+		}
 		if(password.equals(data.getPassword())) {
+			Set<UserRole> ur=data.getUserRoles();
 		for(UserRole val : ur) {
 		      Role role=val.getRole();
 		      roleName=role.getRoleName();
