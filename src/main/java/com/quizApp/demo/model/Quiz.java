@@ -40,11 +40,19 @@ public class Quiz {
 	    @JsonIgnore
 	    private Set<Question> questions = new HashSet<>();
 //	   
-//	   @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//	    @JsonIgnore
-//	    private Set<QuizPaymentStatus> quizPaymentStatus = new HashSet<>();
+	   @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+	    @JsonIgnore
+	    private Set<QuizPaymentStatus> quizPaymentStatus = new HashSet<>();
 	   
-	   @OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	   public Set<QuizPaymentStatus> getQuizPaymentStatus() {
+		return quizPaymentStatus;
+	}
+
+	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
+		this.quizPaymentStatus = quizPaymentStatus;
+	}
+
+	@OneToMany(mappedBy = "quiz", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	    @JsonIgnore
 	    private Set<DatabaseFile> dataBaseFile = new HashSet<>();
 	   

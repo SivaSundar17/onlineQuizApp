@@ -37,8 +37,8 @@ public class QuizPaymentStatusServiceImpl implements QuizPaymentStatusService {
 		qps.setPaymentStatus(quizPaymentStatus.isPaymentStatus());
 //		qps.setQuiz(qps.getQuiz());
 //		qps.setUser(qps.getUser());
-		qps.setQuesId(qps.getQuizId());
-		qps.setUserId(qps.getUserId());
+		qps.setQuiz(qps.getQuiz());
+		qps.setUser(qps.getUser());
         return this.quizPaymentStatusRepository.save(qps);
 
 	}

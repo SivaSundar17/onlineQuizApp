@@ -49,7 +49,6 @@ public class DatabaseFileController {
     //download file
     @GetMapping("/downloadFile/{fileid}")
     public ResponseEntity<Resource> downloadFile(@PathVariable("fileid") Integer fileid, HttpServletRequest request) throws IOException {
-        // Load file as Resource
         DatabaseFile databaseFile = fileStorageService.getFile(fileid);
 
         return ResponseEntity.ok()
@@ -60,7 +59,6 @@ public class DatabaseFileController {
 //    
     @GetMapping("/files")
     public List<DatabaseFile> getAllFiles( ){
-        // Load file as Resource
     	return fileStorageService.getFiles();
     }
 

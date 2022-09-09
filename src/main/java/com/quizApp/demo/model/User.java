@@ -33,9 +33,9 @@ public class User{
     @JsonIgnore
     private Set<UserRole> userRoles=new HashSet<>(); 
     
-//    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER,mappedBy = "user")
-//    @JsonIgnore
-//    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    @JsonIgnore
+    private Set<QuizPaymentStatus> quizPaymentStatus=new HashSet<>(); 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<TestHistory> testhistorys = new HashSet<>();
@@ -46,13 +46,13 @@ public class User{
     
 //    
 //   
-//    public Set<QuizPaymentStatus> getQuizPaymentStatus() {
-//		return quizPaymentStatus;
-//	}
-//
-//	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
-//		this.quizPaymentStatus = quizPaymentStatus;
-//	}
+    public Set<QuizPaymentStatus> getQuizPaymentStatus() {
+		return quizPaymentStatus;
+	}
+
+	public void setQuizPaymentStatus(Set<QuizPaymentStatus> quizPaymentStatus) {
+		this.quizPaymentStatus = quizPaymentStatus;
+	}
 
 	public Set<Revenue> getRevenue() {
 		return revenue;

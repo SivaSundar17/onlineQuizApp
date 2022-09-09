@@ -15,32 +15,17 @@ public class QuizPaymentStatus {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	private long quizId;
-	private long userId;
+//	private long quizId;
+//	private long userId;
 	
 	
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private User user;
-//    
-//    @ManyToOne(fetch = FetchType.EAGER)
-//    private Quiz quiz;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
+    
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Quiz quiz;
     
     
-	public long getQuizId() {
-		return quizId;
-	}
-
-	public void setQuesId(long quesId) {
-		this.quizId = quizId;
-	}
-
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
 
 	private boolean paymentStatus;
 
@@ -53,21 +38,21 @@ public class QuizPaymentStatus {
 		this.id = id;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
-//
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
-//
-//	public Quiz getQuiz() {
-//		return quiz;
-//	}
+	public User getUser() {
+		return user;
+	}
 
-//	public void setQuiz(Quiz quiz) {
-//		this.quiz = quiz;
-//	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Quiz getQuiz() {
+		return quiz;
+	}
+
+	public void setQuiz(Quiz quiz) {
+		this.quiz = quiz;
+	}
 
 	public boolean isPaymentStatus() {
 		return paymentStatus;
